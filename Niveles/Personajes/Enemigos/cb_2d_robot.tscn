@@ -1,0 +1,133 @@
+[gd_scene load_steps=16 format=3 uid="uid://dhyclc5lcn87o"]
+
+[ext_resource type="Texture2D" uid="uid://c4we0oyi3v3w1" path="res://Assets_Lost_Space/Enemigos/Boss-removebg-preview.png" id="1_7miq5"]
+[ext_resource type="Script" path="res://Niveles/Personajes/Enemigos/Script_cb_2d_robot.gd" id="1_k4j7n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q705"]
+atlas = ExtResource("1_7miq5")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1n38m"]
+atlas = ExtResource("1_7miq5")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic1a7"]
+atlas = ExtResource("1_7miq5")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ecs2"]
+atlas = ExtResource("1_7miq5")
+region = Rect2(0, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uf73n"]
+atlas = ExtResource("1_7miq5")
+region = Rect2(96, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22lrg"]
+atlas = ExtResource("1_7miq5")
+region = Rect2(192, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57y6v"]
+atlas = ExtResource("1_7miq5")
+region = Rect2(0, 192, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3v5i"]
+atlas = ExtResource("1_7miq5")
+region = Rect2(96, 192, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb455"]
+atlas = ExtResource("1_7miq5")
+region = Rect2(192, 192, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vkone"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q705")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1n38m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic1a7")
+}],
+"loop": true,
+"name": &"Abajo_Quieto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ecs2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uf73n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22lrg")
+}],
+"loop": true,
+"name": &"Arriba",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57y6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3v5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sb455")
+}],
+"loop": true,
+"name": &"De_Lado",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_inpon"]
+size = Vector2(44.3787, 94)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjxrv"]
+size = Vector2(117, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8q75"]
+size = Vector2(692.276, 427.715)
+
+[node name="cb_2d_Robot" type="CharacterBody2D"]
+scale = Vector2(1.3, 1.3)
+collision_layer = 8
+collision_mask = 19
+script = ExtResource("1_k4j7n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.3, 1.3)
+sprite_frames = SubResource("SpriteFrames_vkone")
+animation = &"Abajo_Quieto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.384615, 1)
+scale = Vector2(1.3, 1.3)
+shape = SubResource("RectangleShape2D_inpon")
+
+[node name="Area2D_para_recibir_Daño" type="Area2D" parent="."]
+scale = Vector2(1.3, 1.3)
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_para_recibir_Daño"]
+position = Vector2(0.5, 2)
+scale = Vector2(1.3, 1.3)
+shape = SubResource("RectangleShape2D_yjxrv")
+
+[node name="Area2D_para_acercarse" type="Area2D" parent="."]
+scale = Vector2(1.3, 1.3)
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_para_acercarse"]
+position = Vector2(-1.5, -0.5)
+scale = Vector2(1.3, 1.3)
+shape = SubResource("RectangleShape2D_i8q75")
+
+[connection signal="body_entered" from="Area2D_para_recibir_Daño" to="." method="_on_area_2d_para_recibir_daño_body_entered"]
+[connection signal="body_entered" from="Area2D_para_acercarse" to="." method="_on_area_2d_para_acercarse_body_entered"]
+[connection signal="body_exited" from="Area2D_para_acercarse" to="." method="_on_area_2d_para_acercarse_body_exited"]

@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://cw7vuxeffyshi"]
+
+[ext_resource type="PackedScene" uid="uid://ywc01pvm73hf" path="res://Niveles/Rooms/Nivel2/node_2d_mapa_nivel_2.tscn" id="1_4tvo0"]
+[ext_resource type="Script" path="res://Niveles/Rooms/Nivel2/Script_node_2d_nivel_2.gd" id="1_qrarq"]
+[ext_resource type="PackedScene" uid="uid://otcosd0sod5y" path="res://Niveles/Personajes/Protagonista/a_2d_protagonista_2.tscn" id="2_amatm"]
+[ext_resource type="Script" path="res://Niveles/Rooms/Nivel2/Script_Camera2D.gd" id="3_0vxje"]
+[ext_resource type="PackedScene" uid="uid://dhgl2xvnnxwnw" path="res://Niveles/Personajes/Enemigos/cb_2d_perro_1.tscn" id="4_ldh1x"]
+[ext_resource type="PackedScene" uid="uid://8dglfjvkgpgj" path="res://UI/canvas_layer_interfaz.tscn" id="5_6gu0l"]
+[ext_resource type="Texture2D" uid="uid://geb578j4wfuw" path="res://Assets_Lost_Space/Objetos/flag.png" id="7_nbf2l"]
+[ext_resource type="AudioStream" uid="uid://c5etctqqnm1kh" path="res://Music/musica-nivel-2.mp3" id="8_aj6vw"]
+[ext_resource type="Script" path="res://Niveles/Rooms/Nivel1/AudioStreamPlayer.gd" id="9_5i8l8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uovc0"]
+size = Vector2(71.5, 162)
+
+[node name="Node_2D_nivel_2" type="Node2D"]
+script = ExtResource("1_qrarq")
+
+[node name="Node_2D_Mapa_Nivel_2" parent="." instance=ExtResource("1_4tvo0")]
+position = Vector2(126, -34)
+scale = Vector2(2.33986, 2.36608)
+
+[node name="CB_2D_Protagonista2" parent="." instance=ExtResource("2_amatm")]
+position = Vector2(235, 1137)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(235, 1137)
+limit_left = 51
+limit_top = 0
+limit_right = 2990
+limit_bottom = 1515
+script = ExtResource("3_0vxje")
+ObjetoSeguir = NodePath("../CB_2D_Protagonista2")
+
+[node name="CB_2D_Perro1" parent="." instance=ExtResource("4_ldh1x")]
+position = Vector2(983, 1162)
+
+[node name="CB_2D_Perro2" parent="." instance=ExtResource("4_ldh1x")]
+position = Vector2(1592, 1304)
+
+[node name="CB_2D_Perro3" parent="." instance=ExtResource("4_ldh1x")]
+position = Vector2(2498, 1117)
+
+[node name="CB_2D_Perro4" parent="." instance=ExtResource("4_ldh1x")]
+position = Vector2(1898, 760)
+
+[node name="CB_2D_Perro5" parent="." instance=ExtResource("4_ldh1x")]
+position = Vector2(816, 791)
+
+[node name="CB_2D_Perro6" parent="." instance=ExtResource("4_ldh1x")]
+position = Vector2(980, 494)
+
+[node name="CB_2D_Perro7" parent="." instance=ExtResource("4_ldh1x")]
+position = Vector2(1782, 496)
+
+[node name="CB_2D_Perro8" parent="." instance=ExtResource("4_ldh1x")]
+position = Vector2(2286, 451)
+
+[node name="CB_2D_Perro9" parent="." instance=ExtResource("4_ldh1x")]
+position = Vector2(2683, 287)
+
+[node name="CanvasLayer_Interfaz" parent="." instance=ExtResource("5_6gu0l")]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2921.75, 257)
+shape = SubResource("RectangleShape2D_uovc0")
+
+[node name="Bandera" type="Sprite2D" parent="."]
+position = Vector2(2959, 148)
+scale = Vector2(0.339921, 0.50241)
+texture = ExtResource("7_nbf2l")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_aj6vw")
+script = ExtResource("9_5i8l8")
+
+[connection signal="dañorecibidoporAlien1" from="CB_2D_Protagonista2" to="CanvasLayer_Interfaz" method="_on_cb_2d_protagonista_2_dañorecibidopor_alien_1"]
+[connection signal="dañorecibidoporPerro1" from="CB_2D_Protagonista2" to="CanvasLayer_Interfaz" method="_on_cb_2d_protagonista_2_dañorecibidopor_perro_1"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

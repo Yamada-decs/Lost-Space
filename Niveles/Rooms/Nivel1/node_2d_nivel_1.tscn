@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://cd7m142ep8xtw"]
+
+[ext_resource type="PackedScene" uid="uid://dccdmsnff578u" path="res://Niveles/Personajes/Protagonista/a_2d_protagonista.tscn" id="1_lrn0o"]
+[ext_resource type="Script" path="res://Niveles/Rooms/Nivel1/Script_node_2d_nivel_1.gd" id="1_mi15w"]
+[ext_resource type="Texture2D" uid="uid://dkaxkvs6qav4e" path="res://UI/Fondo_Prueba.jpg" id="2_0nwju"]
+[ext_resource type="PackedScene" uid="uid://m2ftkmp6r47d" path="res://UI/cl_inicio_juego.tscn" id="2_cg3j5"]
+[ext_resource type="Script" path="res://Niveles/Rooms/Nivel1/Script_Camera2D.gd" id="5_pntq6"]
+[ext_resource type="AudioStream" uid="uid://ccilt56yjjal7" path="res://Music/Musica_Fondo.mp3" id="6_35b84"]
+[ext_resource type="Script" path="res://Niveles/Rooms/Nivel1/AudioStreamPlayer.gd" id="7_3yljv"]
+[ext_resource type="PackedScene" uid="uid://8dglfjvkgpgj" path="res://UI/canvas_layer_interfaz.tscn" id="8_3g8ma"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6t04"]
+size = Vector2(113, 694)
+
+[node name="Node2D_Nivel1" type="Node2D"]
+script = ExtResource("1_mi15w")
+
+[node name="FondoPrueba" type="Sprite2D" parent="."]
+position = Vector2(1248.76, 326)
+scale = Vector2(1.39027, 0.604086)
+texture = ExtResource("2_0nwju")
+
+[node name="A2D_Protagonista" parent="." instance=ExtResource("1_lrn0o")]
+position = Vector2(118, 341)
+
+[node name="inicio_tiempo" type="Timer" parent="."]
+one_shot = true
+
+[node name="tiempo_roca" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="CL_Inicio_Juego" parent="." instance=ExtResource("2_cg3j5")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 2500
+limit_bottom = 600
+script = ExtResource("5_pntq6")
+ObjetoSeguir = NodePath("../A2D_Protagonista")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_35b84")
+script = ExtResource("7_3yljv")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2441, 319)
+shape = SubResource("RectangleShape2D_h6t04")
+
+[node name="CanvasLayer_Interfaz" parent="." instance=ExtResource("8_3g8ma")]
+
+[connection signal="dañorecibidoporasteroide" from="A2D_Protagonista" to="CanvasLayer_Interfaz" method="_on_a_2d_protagonista_dañorecibidoporasteroide"]
+[connection signal="timeout" from="inicio_tiempo" to="." method="_on_inicio_tiempo_timeout"]
+[connection signal="timeout" from="tiempo_roca" to="." method="_on_tiempo_roca_timeout"]
+[connection signal="iniciar_juego" from="CL_Inicio_Juego" to="." method="_on_cl_inicio_juego_iniciar_juego"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

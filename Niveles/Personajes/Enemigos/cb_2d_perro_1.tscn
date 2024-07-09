@@ -1,0 +1,128 @@
+[gd_scene load_steps=16 format=3 uid="uid://dhgl2xvnnxwnw"]
+
+[ext_resource type="Texture2D" uid="uid://c8hlf7lm001fr" path="res://Assets_Lost_Space/Enemigos/perro_nivel_1-removebg-preview.png" id="1_6ebrs"]
+[ext_resource type="Script" path="res://Niveles/Personajes/Enemigos/Script_cb_2d_perro_1.gd" id="1_424vu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mi2pp"]
+atlas = ExtResource("1_6ebrs")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80p02"]
+atlas = ExtResource("1_6ebrs")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qgsf"]
+atlas = ExtResource("1_6ebrs")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyv87"]
+atlas = ExtResource("1_6ebrs")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6o5f"]
+atlas = ExtResource("1_6ebrs")
+region = Rect2(48, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtxv3"]
+atlas = ExtResource("1_6ebrs")
+region = Rect2(96, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7ls2"]
+atlas = ExtResource("1_6ebrs")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1kac"]
+atlas = ExtResource("1_6ebrs")
+region = Rect2(48, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2tlj"]
+atlas = ExtResource("1_6ebrs")
+region = Rect2(96, 96, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_03j8w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mi2pp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80p02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qgsf")
+}],
+"loop": true,
+"name": &"Abajo_Quieto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyv87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6o5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtxv3")
+}],
+"loop": true,
+"name": &"Arriba",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7ls2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1kac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2tlj")
+}],
+"loop": true,
+"name": &"De_Lado",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2vyp"]
+size = Vector2(31, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwngv"]
+size = Vector2(87, 94)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xj07"]
+size = Vector2(672, 358)
+
+[node name="CB_2D_Perro1" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 19
+script = ExtResource("1_424vu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_03j8w")
+animation = &"De_Lado"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 7)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_k2vyp")
+
+[node name="Area2D_para_recibir_Daño" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D_para_recibir_Daño"]
+position = Vector2(-0.5, 7)
+shape = SubResource("RectangleShape2D_gwngv")
+
+[node name="Area2D_para_acercarse" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_para_acercarse"]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_4xj07")
+
+[connection signal="body_entered" from="Area2D_para_recibir_Daño" to="." method="_on_area_2d_para_recibir_daño_body_entered"]
+[connection signal="body_entered" from="Area2D_para_acercarse" to="." method="_on_area_2d_para_acercarse_body_entered"]
+[connection signal="body_exited" from="Area2D_para_acercarse" to="." method="_on_area_2d_para_acercarse_body_exited"]

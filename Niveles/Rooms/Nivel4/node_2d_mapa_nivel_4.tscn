@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwb6etmbk0t15"]
+
+[ext_resource type="Texture2D" uid="uid://dey1bt16dl0i" path="res://Assets_Lost_Space/Niveles/fondo nivel 4.jpg" id="1_3prgp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6c3c"]
+size = Vector2(43.25, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jv02n"]
+size = Vector2(44.25, 45)
+
+[node name="Node_2D_Mapa_Nivel_2" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 3
+
+[node name="FondoNivel" type="Sprite2D" parent="."]
+position = Vector2(609, 348)
+scale = Vector2(0.975781, 0.96875)
+texture = ExtResource("1_3prgp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(42, 530, 181, 530, 249, 532, 450, 533, 445, 323, 178, 323, 178, 303, 449, 305, 464, 535, 523, 532, 521, 509, 603.767, 512.714, 607, 528, 785, 529, 735, 529, 735, 493, 696, 493, 695, 477, 785, 476, 787, 321, 802, 321, 801, 316, 804, 298, 838, 297, 839, 312, 829, 322, 852, 323, 853, 337, 803, 340, 799, 527, 1145, 537, 1147, 447, 1147, 234, 1138, 148, 471, 145, 344, 145, 287, 147, 225, 147, 222, 130, 40, 132, 40, 214, 110, 216, 233, 218, 401, 216, 405, 206, 485, 205, 482, 232, 992, 229, 994, 337, 911, 337, 906, 250, 83, 252, 83, 299, 83, 389, 80, 485, 215, 494, 219, 344, 304, 344, 302, 430, 227, 432, 224, 494, 224, 528, -12, 521, -17, 36, 1227, 34, 1236, 652, -17, 655, -12, 523)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(652.375, 378.5)
+shape = SubResource("RectangleShape2D_b6c3c")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(967, 498)
+shape = SubResource("RectangleShape2D_jv02n")

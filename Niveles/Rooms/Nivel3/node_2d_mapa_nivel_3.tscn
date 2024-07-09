@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3flcxeoji0tw"]
+
+[ext_resource type="Texture2D" uid="uid://ca3nsvf2le37w" path="res://Assets_Lost_Space/Niveles/fondo nivel 3.jpg" id="1_3wo1n"]
+
+[node name="Mapa nivel 3" type="StaticBody2D"]
+position = Vector2(1212, 624)
+rotation = 3.14153
+collision_layer = 16
+collision_mask = 3
+
+[node name="fondo nivel 3" type="Sprite2D" parent="."]
+position = Vector2(620, 304)
+texture = ExtResource("1_3wo1n")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(582, 296)
+scale = Vector2(112.202, 26.4506)
+polygon = PackedVector2Array(-4.03736, -7.86372, -4.03736, -0.680514, -3.53826, -0.453676, -3.53826, 1.28542, -4.01953, 1.51225, -4.03736, 9.14914, -3.09263, 9.14914, -3.12828, 5.89779, -2.46876, 5.74656, -2.41528, 8.9223, 0.365412, 8.99791, 0.383237, 7.86372, 0.882336, 7.86372, 0.953636, 9.14914, 4.75036, 8.69546, 4.69688, 1.36103, 3.98388, 1.2098, 3.98388, -1.13419, 4.75036, -1.05858, 4.67906, -7.71249, 2.57571, -7.56127, 2.64701, -4.38554, 2.04096, -4.30992, 1.98748, -7.48566, -0.508012, -7.48566, -0.472362, -4.30992, -1.02494, -4.30992, -1.02494, -7.41004, -1.52404, -7.41004, -1.52404, -4.38554, -2.13008, -4.23431, -2.14791, -7.86372, -3.28871, -8.01495, -3.87693, -8.20398, -4.17104, -8.61985, -1.7112, -8.65765, 2.65592, -8.73326, 4.99099, -8.9223, 5.06229, 6.31366, 5.06229, 10.0943, -0.516924, 10.3211, -4.41168, 10.2077, -4.34038, -1.92812, -4.36712, -8.01495, -4.33147, -8.46862, -3.93932, -8.27959, -3.89476, -8.24178)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(421, 303)
+scale = Vector2(13.525, -4.66095)
+polygon = PackedVector2Array(-8.3549, 4.93461, -8.3549, -5.36371, 9.09428, -6.2219, 9.02034, 6.2219)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
+position = Vector2(592, 441)
+scale = Vector2(5.2544, 5.39923)
+polygon = PackedVector2Array(-6.8514, -6.2972, -6.8514, 7.77888, 6.66109, 7.77888, 6.66109, -6.85283)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="."]
+position = Vector2(743, 460)
+scale = Vector2(4.80161, 6.07139)
+polygon = PackedVector2Array(-8.5388, -8.07064, -8.5388, 6.75298, 8.74707, 7.41181, 8.33054, -7.90594)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="."]
+position = Vector2(892, 440)
+scale = Vector2(5.71927, 6.08058)
+polygon = PackedVector2Array(-6.46935, -5.92048, -6.46935, 7.23616, 6.11967, 7.56508, 5.76997, -5.92048)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="."]
+position = Vector2(940, 303)
+scale = Vector2(5.52656, 4.7474)
+polygon = PackedVector2Array(-8.50438, -5.05541, -8.50438, 5.47668, 7.78061, 5.68732, 7.78061, -6.74054)
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="."]
+position = Vector2(748, 305)
+scale = Vector2(-9.30341, 6.81699)
+polygon = PackedVector2Array(6.98669, -8.36147, 6.8792, 8.36147, -6.55674, 8.21478, -6.23428, -9.09493)

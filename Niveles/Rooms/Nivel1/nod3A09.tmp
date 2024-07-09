@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cd7m142ep8xtw"]
+
+[ext_resource type="PackedScene" uid="uid://dccdmsnff578u" path="res://Niveles/Personajes/Protagonista/a_2d_protagonista.tscn" id="1_lrn0o"]
+[ext_resource type="Script" path="res://Niveles/Rooms/Nivel1/Script_node_2d_nivel_1.gd" id="1_mi15w"]
+[ext_resource type="PackedScene" uid="uid://m2ftkmp6r47d" path="res://UI/cl_inicio_juego.tscn" id="2_cg3j5"]
+
+[node name="Node2D_Nivel1" type="Node2D"]
+script = ExtResource("1_mi15w")
+
+[node name="A2D_Protagonista" parent="." instance=ExtResource("1_lrn0o")]
+position = Vector2(118, 341)
+
+[node name="inicio_tiempo" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="tiempo_roca" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="CL_Inicio_Juego" parent="." instance=ExtResource("2_cg3j5")]
+
+[connection signal="timeout" from="inicio_tiempo" to="." method="_on_inicio_tiempo_timeout"]
+[connection signal="timeout" from="tiempo_roca" to="." method="_on_tiempo_roca_timeout"]
+[connection signal="iniciar_juego" from="CL_Inicio_Juego" to="." method="_on_cl_inicio_juego_iniciar_juego"]

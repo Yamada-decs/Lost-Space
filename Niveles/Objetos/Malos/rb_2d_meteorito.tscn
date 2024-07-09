@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs1g5c7ix0njk"]
+
+[ext_resource type="Script" path="res://Niveles/Objetos/Malos/Script_rb_2d_meteorito.gd" id="1_fipbi"]
+[ext_resource type="Texture2D" uid="uid://cfnjqftnptrxa" path="res://Assets_Lost_Space/Meteorito/0.png" id="1_kk7ey"]
+[ext_resource type="Texture2D" uid="uid://crdwe6lynpqk6" path="res://Assets_Lost_Space/Meteorito/1.png" id="2_rh030"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlmw1"]
+atlas = ExtResource("2_rh030")
+region = Rect2(0, 0, 126, 133)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2e502"]
+atlas = ExtResource("1_kk7ey")
+region = Rect2(0, 0, 305, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xbjtw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlmw1")
+}],
+"loop": true,
+"name": &"Chiquito",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2e502")
+}],
+"loop": true,
+"name": &"Grande",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nnljp"]
+radius = 39.0128
+
+[node name="RB2D_Meteorito" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_fipbi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xbjtw")
+animation = &"Grande"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_nnljp")

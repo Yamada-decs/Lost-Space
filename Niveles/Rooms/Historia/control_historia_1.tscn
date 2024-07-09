@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmfrqqrhomp1t"]
+
+[ext_resource type="Texture2D" uid="uid://eujpoifrjm1n" path="res://Assets_Lost_Space/Historia/Historia1.png" id="1_6ftpv"]
+[ext_resource type="Script" path="res://Niveles/Rooms/Historia/Script_control_historia_1.gd" id="1_gkovl"]
+[ext_resource type="Texture2D" uid="uid://b3o8r6kxe7to8" path="res://Assets_Lost_Space/Historia/Historia2.png" id="3_litgq"]
+[ext_resource type="Texture2D" uid="uid://dt1cyhvlws7xs" path="res://Assets_Lost_Space/Historia/Historia3.png" id="4_w4gfw"]
+
+[node name="Control_Historia_1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gkovl")
+
+[node name="Historia1" type="Sprite2D" parent="."]
+position = Vector2(578.25, 325.75)
+scale = Vector2(0.901172, 0.900695)
+texture = ExtResource("1_6ftpv")
+
+[node name="Historia2" type="Sprite2D" parent="."]
+position = Vector2(576.5, 325)
+scale = Vector2(0.899219, 0.9)
+texture = ExtResource("3_litgq")
+
+[node name="Historia3" type="Sprite2D" parent="."]
+position = Vector2(577, 325)
+scale = Vector2(0.901563, 0.9)
+texture = ExtResource("4_w4gfw")
+
+[node name="Timer_Mostrar2" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Timer_Mostrar3" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Timer_Mostrar_PP" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Timer_Mostrar2" to="." method="_on_timer_mostrar_2_timeout"]
+[connection signal="timeout" from="Timer_Mostrar3" to="." method="_on_timer_mostrar_3_timeout"]
+[connection signal="timeout" from="Timer_Mostrar_PP" to="." method="_on_timer_mostrar_pp_timeout"]

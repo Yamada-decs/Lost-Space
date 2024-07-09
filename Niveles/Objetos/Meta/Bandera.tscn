@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjcrylf84b3a"]
+
+[ext_resource type="Texture2D" uid="uid://geb578j4wfuw" path="res://Assets_Lost_Space/Objetos/flag.png" id="1_pbari"]
+
+[node name="Bandera" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.698551, 0.71403)
+texture = ExtResource("1_pbari")

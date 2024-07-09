@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://8dglfjvkgpgj"]
+
+[ext_resource type="Texture2D" uid="uid://cqau8880oyqhe" path="res://Assets_Lost_Space/UI/tile_heart_morado.png" id="1_1hunn"]
+[ext_resource type="Script" path="res://UI/Script_canvas_layer_interfaz.gd" id="1_wfccg"]
+
+[node name="CanvasLayer_Interfaz" type="CanvasLayer"]
+script = ExtResource("1_wfccg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 134.0
+offset_bottom = 81.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_1hunn")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_1hunn")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_1hunn")
+expand_mode = 2

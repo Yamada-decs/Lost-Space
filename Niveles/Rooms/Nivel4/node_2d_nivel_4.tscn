@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://oxwk7ruo6day"]
+
+[ext_resource type="PackedScene" uid="uid://bwb6etmbk0t15" path="res://Niveles/Rooms/Nivel4/node_2d_mapa_nivel_4.tscn" id="1_j7suh"]
+[ext_resource type="Script" path="res://Niveles/Rooms/Nivel4/Script_node_2d_nivel_4.gd" id="1_u3ev3"]
+[ext_resource type="PackedScene" uid="uid://otcosd0sod5y" path="res://Niveles/Personajes/Protagonista/a_2d_protagonista_2.tscn" id="2_gbah2"]
+[ext_resource type="Script" path="res://Niveles/Rooms/Nivel2/Script_Camera2D.gd" id="3_imelf"]
+[ext_resource type="PackedScene" uid="uid://dhgl2xvnnxwnw" path="res://Niveles/Personajes/Enemigos/cb_2d_perro_1.tscn" id="4_w7pm1"]
+[ext_resource type="PackedScene" uid="uid://8dglfjvkgpgj" path="res://UI/canvas_layer_interfaz.tscn" id="6_gvlgy"]
+[ext_resource type="PackedScene" uid="uid://dhyclc5lcn87o" path="res://Niveles/Personajes/Enemigos/cb_2d_robot.tscn" id="7_rr5f1"]
+[ext_resource type="PackedScene" uid="uid://dq4igi0uwjqd7" path="res://Niveles/Personajes/Enemigos/cb_2d_alien_1.tscn" id="8_vilme"]
+[ext_resource type="Texture2D" uid="uid://geb578j4wfuw" path="res://Assets_Lost_Space/Objetos/flag.png" id="9_uw7po"]
+[ext_resource type="AudioStream" uid="uid://cwd1kt7vbildr" path="res://Music/musica-nivel-4.mp3" id="10_mqx45"]
+[ext_resource type="Script" path="res://Niveles/Rooms/Nivel1/AudioStreamPlayer.gd" id="11_231wt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dq4y"]
+size = Vector2(207.25, 182.25)
+
+[node name="Node_2D_nivel_2" type="Node2D"]
+script = ExtResource("1_u3ev3")
+
+[node name="Node_2D_Mapa_Nivel_4" parent="." instance=ExtResource("1_j7suh")]
+position = Vector2(37, -87)
+scale = Vector2(2.366, 2.366)
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2(371, 959)
+limit_left = 1
+limit_top = 0
+limit_right = 29955
+limit_bottom = 1467
+script = ExtResource("3_imelf")
+ObjetoSeguir = NodePath("../CB_2D_Protagonista_2")
+
+[node name="CB_2D_Protagonista_2" parent="." instance=ExtResource("2_gbah2")]
+position = Vector2(883, 570)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(236.375, 324.875)
+shape = SubResource("RectangleShape2D_0dq4y")
+
+[node name="CanvasLayer_Interfaz" parent="." instance=ExtResource("6_gvlgy")]
+
+[node name="cb_2d_Robot" parent="." instance=ExtResource("7_rr5f1")]
+position = Vector2(1690, 966)
+
+[node name="CB_2D_Perro1" parent="." instance=ExtResource("4_w7pm1")]
+position = Vector2(1242, 668)
+
+[node name="CB_2D_Alien1" parent="." instance=ExtResource("8_vilme")]
+position = Vector2(1798, 600)
+
+[node name="Bandera" type="Sprite2D" parent="."]
+position = Vector2(293, 248)
+scale = Vector2(0.339921, 0.50241)
+texture = ExtResource("9_uw7po")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_mqx45")
+script = ExtResource("11_231wt")
+
+[node name="CB_2D_Perro2" parent="." instance=ExtResource("4_w7pm1")]
+position = Vector2(351, 796)
+
+[node name="CB_2D_Perro3" parent="." instance=ExtResource("4_w7pm1")]
+position = Vector2(1648, 319)
+
+[node name="CB_2D_Alien2" parent="." instance=ExtResource("8_vilme")]
+position = Vector2(2283, 874)
+
+[node name="CB_2D_Alien3" parent="." instance=ExtResource("8_vilme")]
+position = Vector2(2308, 347)
+
+[node name="CB_2D_Alien4" parent="." instance=ExtResource("8_vilme")]
+position = Vector2(989, 311)
+
+[node name="CB_2D_Alien5" parent="." instance=ExtResource("8_vilme")]
+position = Vector2(561, 322)
+
+[connection signal="dañorecibidoporAlien1" from="CB_2D_Protagonista_2" to="CanvasLayer_Interfaz" method="_on_cb_2d_protagonista_2_dañorecibidopor_alien_1"]
+[connection signal="dañorecibidoporPerro1" from="CB_2D_Protagonista_2" to="CanvasLayer_Interfaz" method="_on_cb_2d_protagonista_2_dañorecibidopor_perro_1"]
+[connection signal="dañorecibidoporRobot" from="CB_2D_Protagonista_2" to="CanvasLayer_Interfaz" method="_on_cb_2d_protagonista_3_dañorecibidopor_robot"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

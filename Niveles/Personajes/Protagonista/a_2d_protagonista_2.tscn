@@ -1,0 +1,141 @@
+[gd_scene load_steps=18 format=3 uid="uid://otcosd0sod5y"]
+
+[ext_resource type="Texture2D" uid="uid://kwlgkt5uol4b" path="res://Assets_Lost_Space/Protagonista/Astronauta2.png" id="1_soj6x"]
+[ext_resource type="Script" path="res://Niveles/Personajes/Protagonista/Script_a_2d_protagonista_2.gd" id="1_y7xof"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtcnc"]
+atlas = ExtResource("1_soj6x")
+region = Rect2(0, 0, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q36ti"]
+atlas = ExtResource("1_soj6x")
+region = Rect2(102, 0, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqnhg"]
+atlas = ExtResource("1_soj6x")
+region = Rect2(204, 0, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypp3a"]
+atlas = ExtResource("1_soj6x")
+region = Rect2(306, 0, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5yuw"]
+atlas = ExtResource("1_soj6x")
+region = Rect2(0, 456, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cd7e"]
+atlas = ExtResource("1_soj6x")
+region = Rect2(102, 456, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbg5e"]
+atlas = ExtResource("1_soj6x")
+region = Rect2(204, 456, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2aqv2"]
+atlas = ExtResource("1_soj6x")
+region = Rect2(306, 456, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yviso"]
+atlas = ExtResource("1_soj6x")
+region = Rect2(0, 304, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbwvv"]
+atlas = ExtResource("1_soj6x")
+region = Rect2(102, 304, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs803"]
+atlas = ExtResource("1_soj6x")
+region = Rect2(204, 304, 102, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds2xh"]
+atlas = ExtResource("1_soj6x")
+region = Rect2(306, 304, 102, 152)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2e1sa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtcnc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q36ti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqnhg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypp3a")
+}],
+"loop": false,
+"name": &"Ir_Abajo",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5yuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cd7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbg5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2aqv2")
+}],
+"loop": false,
+"name": &"Ir_Arriba",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yviso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbwvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs803")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ds2xh")
+}],
+"loop": false,
+"name": &"Ir_Lado",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfp6f"]
+size = Vector2(73, 144)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pplc0"]
+size = Vector2(56, 104)
+
+[node name="CB_2D_Protagonista2" type="CharacterBody2D"]
+collision_mask = 25
+script = ExtResource("1_y7xof")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_2e1sa")
+animation = &"Ir_Abajo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+scale = Vector2(0.7, 0.7)
+shape = SubResource("RectangleShape2D_nfp6f")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_pplc0")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

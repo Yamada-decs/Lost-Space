@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://5odle6hyw3mq"]
+
+[ext_resource type="VideoStream" path="res://Assets_Lost_Space/UI/Video1.ogv" id="1_lfdln"]
+[ext_resource type="Script" path="res://UI/Script_VideoStreamPlayer.gd" id="2_ut546"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -321.0
+offset_right = 580.0
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_lfdln")
+autoplay = true
+expand = true
+script = ExtResource("2_ut546")
+
+[connection signal="finished" from="VideoStreamPlayer" to="VideoStreamPlayer" method="_on_finished"]

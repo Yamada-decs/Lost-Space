@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dccdmsnff578u"]
+
+[ext_resource type="Script" path="res://Niveles/Personajes/Protagonista/Script_a_2d_protagonista.gd" id="1_ndll2"]
+[ext_resource type="Texture2D" uid="uid://brda8tqrqb5oc" path="res://Assets_Lost_Space/Enemigos/nave-juego.png" id="2_cgskm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x6epd"]
+radius = 80.0999
+
+[node name="A2D_Protagonista" type="CharacterBody2D"]
+script = ExtResource("1_ndll2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.717433, 0.919211)
+texture = ExtResource("2_cgskm")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-2, -6)
+scale = Vector2(-11.5748, 7.79945)
+polygon = PackedVector2Array(7.6891, -4.61571, 7.08433, -2.30785, 7.42991, -1.92321, 6.73876, -0.897499, 7.6891, -0.384642, 7.51631, 0.897499, 6.47957, 2.17964, 4.92448, 3.71821, 4.14693, 3.71821, 4.14693, 2.94893, 4.49251, 2.05143, 3.45577, 1.92321, 2.85101, 3.71821, 1.81428, 5.00035, 1.20952, 5.64142, 0.172789, 6.15428, -0.863943, 6.28249, -1.98707, 5.76964, -2.67822, 5.00035, -3.19659, 5.00035, -3.62856, 5.51321, -4.92448, 5.51321, -6.39318, 5.89785, -7.6027, 4.74392, -7.77549, 3.46178, -5.01087, -0.256428, -3.62856, -1.41036, -4.31972, -2.17964, -3.19659, -2.82071, -4.23332, -3.46178, -1.20952, -4.23107, -0.950338, -5.00035, 1.03673, -4.74392, 1.81428, -5.25678, 0.259183, -6.02606, 0.0863943, -6.92356, 5.01087, -7.17999, 4.92448, -5.38499)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4, -5)
+scale = Vector2(1.24611, 0.881958)
+shape = SubResource("CircleShape2D_x6epd")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
